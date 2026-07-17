@@ -11,6 +11,8 @@ with st.form(key='simulador_maratona'):
     time = st.number_input(
         'Tempo disponível para assistir por dia',
         step=int(),
+        min_value=1,
+        max_value=60,
     )
     submit_button = st.form_submit_button(label='Simular')
 
