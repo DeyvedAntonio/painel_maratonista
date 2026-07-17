@@ -7,8 +7,8 @@ def home():
         page_icon=':film_strip:',
         layout='wide',
     )
-    st.title(':film_strip: Painel Maratonista')
-    st.title('Bem-vindo ao seu painel de controle de produções assistidas!')
+    st.title('Painel do Maratonista de Séries & Filmes! 🚀')
+    st.subheader('Bem-vindo ao seu painel de controle de produções assistidas!')
 
 
 if __name__ == '__main__':
