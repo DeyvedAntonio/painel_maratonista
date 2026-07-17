@@ -23,8 +23,9 @@ if __name__ == '__main__':
             st.Page('pages/cadastro.py', title='Cadastro')
         ],
         'Painel': [
-            st.Page('pages/painel.py', title='Dashboard', icon="🔥")
-        ]
+            st.Page('pages/painel.py', title='Dashboard', icon="🔥"),
+            st.Page('pages/simulador.py', title='Simulador')
+        ],
     }
     pg = st.navigation(pages, position='top')
     pg.run()
