@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./maratonista.db:/app/maratonista.db
+      - ./.env:/app/.env:ro
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY:-}
+      - STREAMLIT_SERVER_HEADLESS=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Opcional: Para desenvolvimento com hot-reload
+  dev:
+    build: .
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.runOnSave=true
+    ports:
+      - "8502:8501"
+    volumes:
+      - .:/app
+      - ./maratonista.db:/app/maratonista.db
+      - ./.env:/app/.env:ro
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY:-}
+      - STREAMLIT_SERVER_HEADLESS=true
+    profiles:
+      - dev
